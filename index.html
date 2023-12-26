@@ -11,47 +11,18 @@
     <script src="js/index.js"></script>
     <title>Portfolio</title>
 </head>
-<body>
+<body onload="loadPage('home', true)">
     <!-- create a portion of the screen on the left hand side with class "nav-window" -->
     <div class="nav-window">
-        <div class="nav-window-tab" onclick="openWindow('index', 'index.html')"> > <img src="./img/folder.png" width="15"> Home</div>
+        <div class="nav-window-tab" onclick="openWindow('home', 'home.html')"> > <img src="./img/folder.png" width="15"> Home</div>
         <div class="nav-window-tab" onclick="openWindow('projects', 'projects.html')"> > <img src="./img/folder.png" width="15"> Projects</div>
         <div class="nav-window-tab" onclick="openWindow('about-me', 'about-me.html')"> > <img src="./img/folder.png" width="15"> About-Me</div>
     </div>
 
     <div class="open-windows-tab" id="open-windows">
-        <div class="open-window active-window" id="open-window-home">Home.html</div>
-        <div class="open-window">About.html</div>
+        <div class="open-window active-window" id="open-window-home" onclick="focusOnWindow('home', 'home.html')">Home.html</div>
     </div>
 
-    <div class="text-body">
-        BODYLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ornare tellus
-        sem,
-        at dignissim purus volutpat a. Vestibulum vel laoreet nisl, quis luctus felis. Integer mollis
-        sem
-        turpis, et tincidunt diam pretium
-        ac. Suspendisse sedarcu nibh. Fusce elementum vulputate lectus. Nullam non mi sodales, mattis
-        nisl
-        sit amet, semper
-        quam. Vivamus consectetur, lacus nec consequat sodales, elit turpis mattis tellus, sed suscipit
-        metus orci nec
-        est. Nam leo est, euismod at luctus et, ultrices a risus. Suspendisse turpis ante, pulvinar vel
-        gravida nec, finibus vel
-        nisl. Fusce id eros ac ex malesuada maximus quis vel felis. Phasellus malesuada, ipsum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ornare tellus
-        sem,
-        at dignissim purus volutpat a. Vestibulum vel laoreet nisl, quis luctus felis. Integer mollis
-        sem
-        turpis, et tincidunt diam pretium
-        ac. Suspendisse sedarcu nibh. Fusce elementum vulputate lectus. Nullam non mi sodales, mattis
-        nisl
-        sit amet, semper
-        quam. Vivamus consectetur, lacus nec consequat sodales, elit turpis mattis tellus, sed suscipit
-        metus orci nec
-        est. Nam leo est, euismod at luctus et, ultrices a risus. Suspendisse turpis ante, pulvinar vel
-        gravida nec, finibus vel
-        nisl. Fusce id eros ac ex malesuada maximus quis vel felis. Phasellus malesuada, ipsum.
-        <button class="open-window-button" onclick="createOpenWindow()">Open Window</button>
-    </div>
-
+    <div class="text-body" id="content"></div>
 </body>
 </html>

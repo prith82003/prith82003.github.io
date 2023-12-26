@@ -8,21 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+    <script src="js/index.js"></script>
     <title>Portfolio</title>
 </head>
-<body>
-    <!-- create a portion of the screen on the left hand side with class "nav-window" -->
-    <div class="nav-window">
-        <div class="nav-window-tab" onclick="location.href='index.html'"> > <img src="./img/folder.png" width="15"> Home</div>
-        <div class="nav-window-tab" onclick="location.href='projects.html'"> > <img src="./img/folder.png" width="15"> Projects</div>
-        <div class="nav-window-tab" onclick="location.href='about-me.html'"> > <img src="./img/folder.png" width="15"> About-Me</div>
-    </div>
-
-    <div class="open-windows-tab" id="open-windows">
-        <div class="open-window active-window">Home.html</div>
-        <div class="open-window">About.html</div>
-    </div>
-
+<body onload="loadPage('about-me')">
     <div class="text-body">
         About Me...
     </div>
