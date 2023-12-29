@@ -11,7 +11,7 @@
     <script src="js/index.js"></script>
     <title>Portfolio</title>
 </head>
-<body onload="loadPage('home', true)">
+<body onload="loadPage('active', true)">
     <!-- create a portion of the screen on the left hand side with class "nav-window" -->
     <div class="nav-window">
         <div class="nav-window-tab" onclick="openWindow('home', 'home.html')"> > <img src="./img/folder.png" width="15"> Home</div>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="open-windows-tab" id="open-windows">
-        <div class="open-window active-window" id="open-window-home" onclick="focusOnWindow('home', 'home.html')">Home.html</div>
+        <div class="open-window" id="open-window-home" onclick="focusOnWindow('home', 'home.html')">Home.html</div>
     </div>
 
     <div class="text-body" id="content"></div>
