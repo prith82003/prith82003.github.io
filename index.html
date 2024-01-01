@@ -6,21 +6,24 @@
     <!-- link stylesheet -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
     <script src="js/index.js"></script>
+    <script src="js/projects.js"></script>
     <title>Portfolio</title>
 </head>
-<body onload="loadPage('active', true)">
+<body onload="loadPage('active', 'active',  true)">
     <!-- create a portion of the screen on the left hand side with class "nav-window" -->
     <div class="nav-window">
-        <div class="nav-window-tab" onclick="openWindow('home', 'home.html')"> > <img src="./img/folder.png" width="15"> Home</div>
-        <div class="nav-window-tab" onclick="openWindow('projects', 'projects.html')"> > <img src="./img/folder.png" width="15"> Projects</div>
-        <div class="nav-window-tab" onclick="openWindow('about-me', 'about-me.html')"> > <img src="./img/folder.png" width="15"> About-Me</div>
+        <div id="explorer-header">Explorer</div>
+        <div class="nav-window-tab" onclick="openWindow('home', './pages/home.html')"> > <img src="./img/folder.png" width="20"> Home</div>
+        <div class="nav-window-tab" id="projects-tab"><div class="collapse-button" onclick="clickRootButton(false)">></div><div class="nav-window-tab project-tab" state="false" onclick="openWindow('projects', './pages/projects.html'); clickRootButton()"><img src="./img/folder.png" width="20"> Projects</div></div>
+        <div id="project-hierarchy"></div>
+        <div class="nav-window-tab" state="false" onclick="openWindow('About Me', './pages/about-me.html')"> > <img src="./img/folder.png" width="20"> About Me</div>
     </div>
 
     <div class="open-windows-tab" id="open-windows">
-        <div class="open-window" id="open-window-home" onclick="focusOnWindow('home', 'home.html')">Home.html</div>
+        <div class="open-window" id="open-window-home" onclick="focusOnWindow('home', './pages/home.html')">Home</div>
     </div>
 
     <div class="text-body" id="content"></div>

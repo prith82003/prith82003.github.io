@@ -18,30 +18,27 @@ const loadOpenWindows = () => {
     }
 
     const activePage = sessionStorage.getItem('activePage');
-    console.log('Active: ' + activePage);
-    // focus on active page using activePage string
     focusOnWindow(activePage, openPagesJson[`open-window-${activePage}`]);
 }
 
-const loadPage = (pageName, loadContent = false) => {
-    console.log('LP Req: ' + pageName);
+const loadPage = (pageName, linkedPage, loadContent = false) => {
+    onLoad(pageName);
 
     if (pageName === 'active') {
         const activePage = sessionStorage.getItem('activePage');
-
-        console.log("LP Active: " + activePage);
+        const linkedActive = sessionStorage.getItem('linkedActive');
 
         if (activePage == null) {
-            loadPage('home', loadContent);
+            loadPage('home', './pages/home.html', loadContent);
             return;
         }
 
-        loadPage(activePage, loadContent);
+        loadPage(activePage, linkedActive, loadContent);
         return;
     }
 
-    console.log("LP Set Active to: " + pageName)
     sessionStorage.setItem('activePage', pageName);
+    sessionStorage.setItem('linkedActive', linkedPage);
 
     if (document.title === 'Portfolio')
         loadOpenWindows();
@@ -50,17 +47,13 @@ const loadPage = (pageName, loadContent = false) => {
     if (tab && !tab.classList.contains('active-window'))
         tab.classList.add('active-window');
 
-
     if (!loadContent)
         return;
 
-    changeContent(`${pageName}.html`);
+    changeContent(linkedPage);
 }
 
 const createOpenWindow = (pageName, linkedPage, switchTab = true) => {
-    // create a div element
-    console.log("Hello World")
-
     const div = document.createElement('div');
     const parent = document.getElementById('open-windows');
 
@@ -71,7 +64,7 @@ const createOpenWindow = (pageName, linkedPage, switchTab = true) => {
 
     let name = pageName;
     name = name[0].toUpperCase() + name.slice(1);
-    name += ".html"
+    // name += ".html"
 
     div.textContent = name;
     div.addEventListener('click', () => { focusOnWindow(pageName, linkedPage) });
@@ -81,7 +74,8 @@ const createOpenWindow = (pageName, linkedPage, switchTab = true) => {
 }
 
 const focusOnWindow = (pageName, linkedPage) => {
-    console.log("Focusing: " + pageName);
+    const tabs = document.getElementsByClassName('open-window');
+
     const activePage = sessionStorage.getItem('activePage');
 
     if (activePage === pageName)
@@ -93,30 +87,26 @@ const focusOnWindow = (pageName, linkedPage) => {
     openWindow.classList.add('active-window');
 
     changeContent(linkedPage);
+    onLoad(pageName);
     sessionStorage.setItem('activePage', pageName);
-    console.log('FW Set Active Page: ' + pageName);
+    sessionStorage.setItem('linkedActive', linkedPage);
 }
 
 const changeContent = (linkedPage) => {
     const content = document.getElementById('content');
-    // content.innerHTML = `<object type="text/html" data="${linkedPage}" ></object>`;
-    // the above method causes a problem where the new data is loaded into a small section on the page with a scroll bar, it should take the full page
-    // the below method works
-
 
     content.innerHTML = "";
     const object = document.createElement('object');
     object.type = "text/html";
     object.data = linkedPage;
-    object.style.width = "100vh";
-    object.style.height = "100vh";
+    object.style.width = "100%";
+    object.style.height = "100%";
     content.appendChild(object);
 }
 
 const openWindow = (pageName, linkedPage) => {
     // send get request to /pages and store json object
     const activePage = sessionStorage.getItem('activePage');
-    console.log("Opening: " + pageName + ", " + activePage);
 
     if (activePage === pageName)
         return;
@@ -138,13 +128,11 @@ const openWindow = (pageName, linkedPage) => {
 
     // check if page is already open
     if (openPagesJson[`open-window-${pageName}`] == null) {
-        console.log("Opening New");
         createOpenWindow(pageName, linkedPage);
         openPagesJson[`open-window-${pageName}`] = linkedPage;
     }
     else {
         // focus on window
-        console.log("Opening Old");
         focusOnWindow(pageName, linkedPage);
     }
 
