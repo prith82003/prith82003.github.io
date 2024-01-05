@@ -17,9 +17,9 @@
     <div class="nav-window">
         <div id="explorer-header">Explorer</div>
         <div class="nav-window-tab" onclick="openWindow('home', './pages/home.html')"> > <img src="./img/folder.png" width="20"> Home</div>
-        <div class="nav-window-tab" id="projects-tab"><div class="collapse-button" onclick="clickRootButton(false)">></div><div class="nav-window-tab project-tab" state="false" onclick="openWindow('projects', './pages/projects.html'); clickRootButton()"><img src="./img/folder.png" width="20"> Projects</div></div>
+        <div class="nav-window-tab" id="projects-tab"><div class="collapse-button" onclick="clickRootButton()">></div><div class="nav-window-tab project-tab" onclick="openWindow('projects', './pages/projects.html'); clickRootButton(true)"><img src="./img/folder.png" width="20"> Projects</div></div>
         <div id="project-hierarchy"></div>
-        <div class="nav-window-tab" state="false" onclick="openWindow('About Me', './pages/about-me.html')"> > <img src="./img/folder.png" width="20"> About Me</div>
+        <div class="nav-window-tab" onclick="openWindow('About Me', './pages/about-me.html')"> > <img src="./img/folder.png" width="20"> About Me</div>
     </div>
 
     <div class="open-windows-tab" id="open-windows">

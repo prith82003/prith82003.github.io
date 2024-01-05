@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
-    <script src="../js/index.js"></script>
-    <script src="../js/projects.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/index.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+        <script src="../js/index.js"></script>
+        <script src="../js/projects.js"></script>
+        <script src='../js/perlin.js'></script>
     <title>Home</title>
+    
+    <style>
+        
+        
+    </style>
 </head>
 <body onload="loadPage('home', './pages/home.html')">
-    <div class="text-body">
-        BODYLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ornare tellus
-        sem,
-        at dignissim purus volutpat a. Vestibulum vel laoreet nisl, quis luctus felis. Integer mollis
-        sem
-        turpis, et tincidunt diam pretium
-        ac. Suspendisse sedarcu nibh. Fusce elementum vulputate lectus. Nullam non mi sodales, mattis
-        nisl
-        sit amet, semper
-        quam. Vivamus consectetur, lacus nec consequat sodales, elit turpis mattis tellus, sed suscipit
-        metus orci nec
-        est. Nam leo est, euismod at luctus et, ultrices a risus. Suspendisse turpis ante, pulvinar vel
-        gravida nec, finibus vel
-        nisl. Fusce id eros ac ex malesuada maximus quis vel felis. Phasellus malesuada, ipsum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ornare tellus
-        sem,
-        at dignissim purus volutpat a. Vestibulum vel laoreet nisl, quis luctus felis. Integer mollis
-        sem
-        turpis, et tincidunt diam pretium
-        ac. Suspendisse sedarcu nibh. Fusce elementum vulputate lectus. Nullam non mi sodales, mattis
-        nisl
-        sit amet, semper
-        quam. Vivamus consectetur, lacus nec consequat sodales, elit turpis mattis tellus, sed suscipit
-        metus orci nec
-        est. Nam leo est, euismod at luctus et, ultrices a risus. Suspendisse turpis ante, pulvinar vel
-        gravida nec, finibus vel
-        nisl. Fusce id eros ac ex malesuada maximus quis vel felis. Phasellus malesuada, ipsum.
+    <div class="text-body" style="z-index: 1;">
+        <h1 class="hello">Welcome.</h1>
+        <h2 class="name">I'm Prithviraaj,</h2><br>
+        <p class="info">
+            I'm a Third Year student at The University of New South Wales studying a Bachelor of Computer Science and Engineering.
+        </p>
+        
+        <p class="extra-info">
+            I'm passionate about programming and I love learning about new things. I'm very interested in Artificial Intelligence, Game and Web Development 
+            and more.
+        </p>
+        
     </div>
+    <canvas id="canvas" style="z-index: 0;" name="canvas"></canvas>
+    
+    <script src="../js/canvas.js"></script>
 </body>
 </html>

@@ -14,6 +14,8 @@ const clickRootButton = (openOnly = false) => {
         state = 'false';
     }
 
+    console.log('OO: ' + openOnly);
+
     const projectHierarchy = document.getElementById('project-hierarchy');
 
     const activePage = sessionStorage.getItem('activePage');
