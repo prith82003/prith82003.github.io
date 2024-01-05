@@ -116,7 +116,7 @@ const noiseScale = 0.02;
 let gameTime = 0;
 
 const seed = Math.random() * 208;
-noise.seed(7.5611379414587745)
+noise.seed(seed)
 console.log('Seed: ' + seed);
 
 const bgColor = 'rgba(28, 30, 37, 0.1)';

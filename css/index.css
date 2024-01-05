@@ -227,7 +227,7 @@ body {
     position: absolute; /* or position: absolute; */
     /* your existing styles */
     z-index: 9999;
-    animation: fadeIn 3s;
+    animation: fadeIn 1.5s;
 }
 
 #canvas {
