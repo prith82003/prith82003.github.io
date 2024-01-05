@@ -227,6 +227,7 @@ body {
     position: absolute; /* or position: absolute; */
     /* your existing styles */
     z-index: 9999;
+    animation: fadeIn 3s;
 }
 
 #canvas {
@@ -241,4 +242,14 @@ body {
     height: 100vh;
 
     z-index: 50;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
