@@ -1,0 +1,88 @@
+.hello {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 200px;
+    color: rgba(255, 255, 255, 0);
+    -webkit-text-stroke: 2.3px #5499f6;
+
+    margin-top: -1px;
+    margin-left: -55px;
+    cursor: default;
+
+    z-index: 9999;
+}
+
+.name {
+    font-family: 'Montserrat', sans-serif; 
+    color: #357ad5;
+    font-weight: 500;   
+    font-size: 100px;
+    
+    margin-top: 210px;
+    margin-left: -15px;
+    cursor: default;
+
+    z-index: 9999;
+}
+
+.info {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 30px;
+    color: #9ec96a;
+    
+    margin-top: 310px;
+    margin-left: -5px;
+    width: 600px;
+    cursor: default;
+
+    z-index: 9999;
+}
+
+.extra-info {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 30px;
+    color: #9ec96a;
+    
+    bottom: 3%;
+    left: 72%;
+    width: 25%;
+    cursor: default;
+
+    z-index: 9999;
+}
+
+.hello,
+.name,
+.info,
+.extra-info {
+    position: absolute; /* or position: absolute; */
+    /* your existing styles */
+    z-index: 9999;
+    animation: fadeIn 2.5s;
+}
+
+#canvas {
+    margin: auto;
+    
+    position: fixed;
+    top: 0;
+    left: 6.2%;
+    color: white;
+    
+    width: 91.3vw;
+    height: 100vh;
+
+    z-index: 50;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

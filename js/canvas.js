@@ -2,10 +2,13 @@ class Particle {
     constructor(p, v, maxSpeed) {
         this.vel = v;
         this.pos = p;
-        this.prevPos = p;
+        this.prevPos = new Vector(-10, -10);
         this.time = 0;
         this.maxSpeed = maxSpeed;
-        this.lifeTime = Math.random() * 3000;
+        this.lifeTime = Math.random() * 2000;
+
+        if (lifeTime < 200)
+            lifeTime = 200;
     }
 
     getPosition() {
@@ -25,8 +28,12 @@ class Particle {
     }
 
     setPosition(p) {
-        this.prevPos = this.pos;
+        let copy = this.pos.copy();
+        this.prevPos = copy;
         this.pos = p;
+
+        // console.log('Prev: ' + JSON.stringify(this.prevPos, null, 1) + ", Curr: " + JSON.stringify(this.pos, null, 1));
+
         this.time++;
     }
 }
@@ -50,6 +57,14 @@ class Vector {
         const mag = this.mag();
         this.x /= mag;
         this.y /= mag;
+    }
+
+    equals(v) {
+        return this.x === v.x && this.y === v.y;
+    }
+
+    copy() {
+        return new Vector(this.x, this.y);
     }
 
     static scale(s, v) {
@@ -81,7 +96,7 @@ canvas.height = window.innerHeight;
 canvas.setAttribute('willReadFrequently', 'true');
 console.log('WRF aft: ' + canvas.getAttribute('willReadFrequently'));
 
-var ctx = canvas.getContext("2d", { willReadFrequently: true });
+var ctx/* : CanvasRenderingContext2D */ = canvas.getContext("2d", { willReadFrequently: true });
 const width = canvas.width;
 const height = canvas.height;
 
@@ -89,7 +104,7 @@ console.log('WRF: ');
 console.log(ctx.getContextAttributes())
 
 // create a grid of points
-const resolution = 15;
+const resolution = 10;
 const columns = width / resolution;
 const rows = height / resolution;
 
@@ -99,63 +114,73 @@ let y1Offset = 3.3 + Math.random() * 2.4;
 let x2Offset = 2.2 + Math.random() * 0.24;
 let y2Offset = .15 + Math.random() * 22.15904;
 
-const maxParticles = 1000;
+const maxParticles = 2500;
 const maxParticleLifetime = 10000000;
 const physicsHertz = 70000;
-const minSpeed = 2000;
+const minSpeed = 1000;
 const maxParticleSpeed = 5500;
 let particles = [];
 
-const velLerpFactor = .2;
+const velLerpFactor = .15;
 const debugField = false;
+const fieldInfluence = 1;
 
 let lifeTime = 0;
 
-const noiseScale = 0.02;
+const noiseScale = 0.035;
 
 let gameTime = 0;
+
+// 7.5611379414587745
+// 147.5530635548854
+// 51.12451387823036
+// 59.48958479963245
+// 2.796706347054606
+// 91.89877454034043
+// 34.82049151886012
+// 83.62571783824464
+// 192.1925199044309
+// 125.20211146432405
+// 106.36199518091105
+// 165.46418103924395
+// 98.8982135350049
+// 81.00903811138537
+// 104.98361939117109
+// 189.5903789950696
+// 52.335546401589596
+// 153.45241287522936
+// 53.69236029680923
+// 149.98975691933782
+// 156.83224236057225
+// 73.26809509753691
+// 92.70108053542445
+// 155.85054814808657
+// 156.40055104482474
 
 const seed = Math.random() * 208;
 noise.seed(seed)
 console.log('Seed: ' + seed);
 
-const bgColor = 'rgba(28, 30, 37, 0.1)';
-
-ctx.globalAlpha = .2;
+ctx.globalAlpha = .06;
 const drawGrid = () => {
     const grid = [];
+    // ctx.reset();
+
+    gameTime += 0.01
+
     // const start = performance.now();
 
-    // ctx.globalAlpha = 0.1;
-    // ctx.fillStyle = bgColor;
-    // ctx.fillRect(0, 0, width, height);
+    /* x1Offset += (noise.perlin2(gameTime + 91.1249875, gameTime + 0.157) * 2 - 1) * .5;
+    y1Offset += (noise.perlin2(gameTime + 82.458908, gameTime + 24.1754) * 2 - 1) * .5;
 
-    /* let imgData = ctx.getImageData(0, 0, width, height);
-    // I want to set each of the pixels in the img to a bit lower than it is currently
-    for (let i = 0; i < width; i++) {
-        for (let j = 0; j < height; j++) {
-            let a = imgData.data[j * (imgData.width * 4) + i * 4 + 3];
-            a -= .5;
-            if (a < 0)
-                a = 0;
+    x2Offset += (noise.perlin2(gameTime + 23.592, gameTime + 0.48923) * 2 - 1) * .5;
+    y2Offset += (noise.perlin2(gameTime + 11.323299, gameTime + 9.249) * 2 - 1) * .5; */
 
-            // console.log('a: ' + a);
-            imgData.data[j * (imgData.width * 4) + i * 4 + 3] = a;
-        }
-    }
-    ctx.putImageData(imgData, 0, 0); */
-
-    // x1Offset += noise.perlin2(gameTime + 1.59981, gameTime + 94.28841) * 0.05;
-    // y1Offset += noise.perlin2(gameTime + 1.59981, gameTime + 94.28841) * 0.05;
-
-    // x2Offset += noise.perlin2(gameTime, gameTime) * 0.05;
-    // y2Offset += noise.perlin2(gameTime, gameTime) * 0.05;
-
-    // y1Offset += 0.01;
-    // x1Offset += 0.01;
+    // y1Offset += 0.1;
+    // x1Offset += 0.1;
 
     // x2Offset += 0.01;
-    // y2Offset += 0.01;
+    // y2Offset += 0.1;
 
     for (let i = 0; i < columns; i++) {
         grid[i] = [];
@@ -177,7 +202,6 @@ const drawGrid = () => {
     if (debugField) {
         for (let i = 0; i < columns; i++) {
             for (let j = 0; j < rows; j++) {
-
                 const x = i * resolution;
                 const y = j * resolution;
 
@@ -219,16 +243,9 @@ const drawGrid = () => {
         const particle = particles[i];
         if (particle.time >= particle.lifeTime) {
             const posNew = new Vector(Math.random() * width, Math.random() * height);
-            const velNew = Vector.scale(10, getClosestVelocity(posNew));
 
             particle.setPosition(posNew);
-            particle.setVelocity(velNew);
             particle.time = 0;
-
-            ctx.beginPath();
-            ctx.arc(particle.pos.x, particle.pos.y, 1, 0, 2 * Math.PI);
-            ctx.fill();
-            continue;
         }
 
         const pos = particle.getPosition();
@@ -243,20 +260,23 @@ const drawGrid = () => {
         let newSpeed = closestVel.mag();
 
         closestVel.normalize();
+        closestVel = Vector.scale(fieldInfluence, closestVel);
         let currVel = particle.getVelocity();
         currVel.normalize();
 
         // if speed is too close to zero, add a random vector to it
-        // if (newSpeed < 0.0004) {
+
+        // lerp velocity
+        closestVel = Vector.lerp(currVel, closestVel, velLerpFactor);
+        // if (closestVel.mag() < 0.004) {
+        //     console.log('CLOSEST VECTOR 0');
         //     let rand = new Vector(Math.random() * 2 - 1, Math.random() * 2 - 1);
         //     rand.normalize();
         //     rand = Vector.scale(500, rand);
         //     currVel.add(rand);
         // }
-
-
-        // lerp velocity
-        closestVel = Vector.lerp(currVel, closestVel, velLerpFactor);
+        if (closestVel.mag() == 0)
+            console.log('CLOSEST VECTOR 0');
 
         if (particle.vel.mag() >= particle.maxSpeed) {
             closestVel = Vector.scale(particle.maxSpeed, closestVel);
@@ -275,9 +295,14 @@ const drawGrid = () => {
         updPosition.add(Vector.scale(60 / physicsHertz, particle.getVelocity()));
         particle.setPosition(updPosition);
 
+        // if (particle.getPosition().equals(particle.getPrevPosition()))
+        //     console.log('SAME SPOT');
+        // else
+        //     console.log('MOVING');
+
         ctx.beginPath();
         // set color to #e4846f
-        ctx.fillStyle = "#b8473d";
+        ctx.fillStyle = "#ee1400";
         ctx.arc(particle.pos.x, particle.pos.y, 1, 0, 2 * Math.PI);
         ctx.fill();
     }

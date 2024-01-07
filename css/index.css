@@ -1,8 +1,8 @@
 :root {
     --background-color: #2a2b35;
-    --dark-background-color: #1c1e25;
-    --darker-bg-color: #1a1b25;
-    --light-background-color: rgb(58, 61, 72);
+    --dark-background-color: rgba(28, 30, 37, 1);
+    --darker-bg-color: rgba(26, 27, 37, 0);
+    --light-background-color: rgba(58, 61, 72, 1);
     --lighter-background-color: #63687a;
 
     --trail-color: #bf67e7;
@@ -167,7 +167,7 @@ body {
 
 .hello {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 200px;
     color: rgba(255, 255, 255, 0);
     -webkit-text-stroke: 2.3px #5499f6;
@@ -182,7 +182,7 @@ body {
 .name {
     font-family: 'Montserrat', sans-serif; 
     color: #357ad5;
-    font-weight: 200;   
+    font-weight: 500;   
     font-size: 100px;
     
     margin-top: 210px;
@@ -212,9 +212,9 @@ body {
     font-size: 30px;
     color: #9ec96a;
     
-    margin-top: 42%;
-    margin-left: 53.5%;
-    width: 35%;
+    bottom: 3%;
+    left: 72%;
+    width: 25%;
     cursor: default;
 
     z-index: 9999;
