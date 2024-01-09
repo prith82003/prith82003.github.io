@@ -46,7 +46,7 @@
     color: #9ec96a;
     
     bottom: 3%;
-    left: 72%;
+    left: 71%;
     width: 25%;
     cursor: default;
 
@@ -57,10 +57,28 @@
 .name,
 .info,
 .extra-info {
-    position: absolute; /* or position: absolute; */
+    z-index: 9999;
+    position: absolute;
+}
+
+#content {
+    position: absolute;
+    top: 0;
+    left: -2.45%;
+    padding-left: 2.3%;
+}
+
+.fadeIn { /* or position: absolute; */
     /* your existing styles */
     z-index: 9999;
     animation: fadeIn 2.5s;
+    opacity: 1;
+}
+
+.fadeOut {
+    z-index: 9999;
+    animation: fadeOut 2.5s;
+    opacity: 0;
 }
 
 #canvas {
@@ -84,5 +102,15 @@
 
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
     }
 }

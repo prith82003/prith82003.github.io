@@ -19,20 +19,21 @@
 </head>
 <body onload="loadPage('home', './pages/home.html')">
     <link rel="stylesheet" href="../css/home.css">
-    <div class="text-body" style="z-index: 1;">
-        <h1 class="hello hidden">Welcome.</h1>
-        <h2 class="name hidden">I'm Prithviraaj,</h2><br>
-        <p class="info hidden">
+    <div class="text-body fadeIn" style="z-index: 1;" id="content">
+        <h1 class="hello">Welcome.</h1>
+        <h2 class="name">I'm Prithviraaj,</h2><br>
+        <p class="info">
             I'm a Third Year student at The University of New South Wales studying a Bachelor of Computer Science.
         </p>
         
-        <p class="extra-info hidden">
+        <p class="extra-info">
             I'm passionate about programming and I love learning about new things. I'm very interested in Artificial Intelligence, Game and Web Development 
             and more.
         </p>
         
     </div>
     <canvas id="canvas" style="z-index: 0;" name="canvas"></canvas>
+    <script src="../js/home.js"></script>
     
     <script src="../js/canvas.js"></script>
 </body>

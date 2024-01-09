@@ -2,21 +2,20 @@ class Particle {
     constructor(p, v, maxSpeed) {
         this.vel = v;
         this.pos = p;
-        this.prevPos = new Vector(-10, -10);
         this.time = 0;
         this.maxSpeed = maxSpeed;
         this.lifeTime = Math.random() * 2000;
+        // this.positionBuffer = [];
+        // this.positionBuffer.push(p.copy());
 
         if (lifeTime < 200)
             lifeTime = 200;
+
+        // this.trailLength = Math.floor(Math.random() * 1) + 1;
     }
 
     getPosition() {
         return this.pos;
-    }
-
-    getPrevPosition() {
-        return this.prevPos;
     }
 
     getVelocity() {
@@ -29,12 +28,21 @@ class Particle {
 
     setPosition(p) {
         let copy = this.pos.copy();
-        this.prevPos = copy;
         this.pos = p;
 
-        // console.log('Prev: ' + JSON.stringify(this.prevPos, null, 1) + ", Curr: " + JSON.stringify(this.pos, null, 1));
-
         this.time++;
+    }
+
+    draw() {
+        for (let i = 0; i < this.positionBuffer.length; i++) {
+            const pos = this.positionBuffer[i];
+
+            ctx.beginPath();
+            ctx.strokeStyle = "#ee1400";
+            ctx.moveTo(pos.x, pos.y);
+            ctx.lineTo(pos.x + 1, pos.y + 1);
+            ctx.stroke();
+        }
     }
 }
 
@@ -114,65 +122,45 @@ let y1Offset = 3.3 + Math.random() * 2.4;
 let x2Offset = 2.2 + Math.random() * 0.24;
 let y2Offset = .15 + Math.random() * 22.15904;
 
-const maxParticles = 2500;
+const maxParticles = 1500;
 const maxParticleLifetime = 10000000;
 const physicsHertz = 70000;
-const minSpeed = 1000;
+const minSpeed = 1200;
 const maxParticleSpeed = 5500;
 let particles = [];
 
-const velLerpFactor = .15;
+const velLerpFactor = .1;
 const debugField = false;
 const fieldInfluence = 1;
 
 let lifeTime = 0;
 
-const noiseScale = 0.035;
+const noiseScale = 0.015;
 
 let gameTime = 0;
 
-// 7.5611379414587745
-// 147.5530635548854
-// 51.12451387823036
-// 59.48958479963245
-// 2.796706347054606
-// 91.89877454034043
-// 34.82049151886012
-// 83.62571783824464
-// 192.1925199044309
-// 125.20211146432405
-// 106.36199518091105
-// 165.46418103924395
-// 98.8982135350049
-// 81.00903811138537
-// 104.98361939117109
-// 189.5903789950696
-// 52.335546401589596
-// 153.45241287522936
-// 53.69236029680923
-// 149.98975691933782
-// 156.83224236057225
-// 73.26809509753691
-// 92.70108053542445
-// 155.85054814808657
-// 156.40055104482474
+const good_seeds =
+    [7.5611379414587745, 147.5530635548854, 51.12451387823036, 59.48958479963245, 2.796706347054606, 91.89877454034043, 34.82049151886012, 83.62571783824464,
+        192.1925199044309, 125.20211146432405, 106.36199518091105, 165.46418103924395, 98.8982135350049, 81.00903811138537, 104.98361939117109, 189.5903789950696,
+        52.335546401589596, 153.45241287522936, 53.69236029680923, 149.98975691933782, 156.83224236057225, 73.26809509753691, 92.70108053542445, 155.85054814808657,
+        156.40055104482474, 169.2760158905349, 163.95847849355488, 62.787874068870025, 195.43189487265357, 148.72560264090296, 152.32696855199842, 194.6337409413344,
+        185.6271497937412, 4.218232032380527, 113.83091265029914];
 
 const seed = Math.random() * 208;
 noise.seed(seed)
 console.log('Seed: ' + seed);
 
-ctx.globalAlpha = .06;
+ctx.globalAlpha = .1;
+// const maxAlpha = 1;
 const drawGrid = () => {
     const grid = [];
     // ctx.reset();
 
     gameTime += 0.01
 
-    // const start = performance.now();
-
     /* x1Offset += (noise.perlin2(gameTime + 91.1249875, gameTime + 0.157) * 2 - 1) * .5;
     y1Offset += (noise.perlin2(gameTime + 82.458908, gameTime + 24.1754) * 2 - 1) * .5;
-
+    
     x2Offset += (noise.perlin2(gameTime + 23.592, gameTime + 0.48923) * 2 - 1) * .5;
     y2Offset += (noise.perlin2(gameTime + 11.323299, gameTime + 9.249) * 2 - 1) * .5; */
 
@@ -227,6 +215,7 @@ const drawGrid = () => {
     }
 
     // spawn particles if less than cap
+    // const start = performance.now();
     for (let i = 0; i < 500; i++) {
         if (particles.length < maxParticles) {
             // vector of random position in canvas
@@ -268,13 +257,7 @@ const drawGrid = () => {
 
         // lerp velocity
         closestVel = Vector.lerp(currVel, closestVel, velLerpFactor);
-        // if (closestVel.mag() < 0.004) {
-        //     console.log('CLOSEST VECTOR 0');
-        //     let rand = new Vector(Math.random() * 2 - 1, Math.random() * 2 - 1);
-        //     rand.normalize();
-        //     rand = Vector.scale(500, rand);
-        //     currVel.add(rand);
-        // }
+
         if (closestVel.mag() == 0)
             console.log('CLOSEST VECTOR 0');
 
@@ -295,21 +278,41 @@ const drawGrid = () => {
         updPosition.add(Vector.scale(60 / physicsHertz, particle.getVelocity()));
         particle.setPosition(updPosition);
 
-        // if (particle.getPosition().equals(particle.getPrevPosition()))
-        //     console.log('SAME SPOT');
-        // else
-        //     console.log('MOVING');
-
+        // !---Old-Method---!
         ctx.beginPath();
         // set color to #e4846f
         ctx.fillStyle = "#ee1400";
+
+        // make alpha lower as it reaches edges and corners
+
+        /* var centerX = width / 2;
+        var centerY = height / 2;
+
+        // Calculate the distance from the center for the current particle
+        var distance = Math.sqrt(
+            Math.pow(pos.x - centerX, 2) + Math.pow(pos.y - centerY, 2)
+        );
+
+        // Calculate the alpha value based on the distance
+        var maxDistance = Math.sqrt(Math.pow(centerX, 2) + Math.pow(centerY, 2));
+        var alpha = 1 - Math.pow(distance / maxDistance, .12);
+        alpha *= 0.5 */;
+
+        // Set the global alpha value for the particle
+        // ctx.globalAlpha = alpha;
+
         ctx.arc(particle.pos.x, particle.pos.y, 1, 0, 2 * Math.PI);
         ctx.fill();
+
+
+
+        // !---New-Method---!
+        // particle.draw();
+
+
+        // const end = performance.now();
+        // console.log('Full: ' + (end - start) + 'ms');
     }
-
-    // const end = performance.now();
-
-    // console.log('Exec Time: ' + (end - start) + 'ms')
 }
 
 setInterval(drawGrid, 1000 / physicsHertz);
