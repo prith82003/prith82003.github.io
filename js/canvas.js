@@ -108,6 +108,10 @@ var ctx/* : CanvasRenderingContext2D */ = canvas.getContext("2d", { willReadFreq
 const width = canvas.width;
 const height = canvas.height;
 
+// fill with black
+ctx.fillStyle = "#1c1e25";
+ctx.fillRect(0, 0, width, height);
+
 console.log('WRF: ');
 console.log(ctx.getContextAttributes())
 
@@ -144,13 +148,14 @@ const good_seeds =
         192.1925199044309, 125.20211146432405, 106.36199518091105, 165.46418103924395, 98.8982135350049, 81.00903811138537, 104.98361939117109, 189.5903789950696,
         52.335546401589596, 153.45241287522936, 53.69236029680923, 149.98975691933782, 156.83224236057225, 73.26809509753691, 92.70108053542445, 155.85054814808657,
         156.40055104482474, 169.2760158905349, 163.95847849355488, 62.787874068870025, 195.43189487265357, 148.72560264090296, 152.32696855199842, 194.6337409413344,
-        185.6271497937412, 4.218232032380527, 113.83091265029914];
+        185.6271497937412, 4.218232032380527, 113.83091265029914, 110.18122725611843, 15.432167091927234, 196.32948636862142, 106.97977392829117, 111.02547820977276,
+        139.17685628576243, 139.26583904874622];
 
-const seed = Math.random() * 208;
+const seed = good_seeds[Math.floor(Math.random() * good_seeds.length)];
 noise.seed(seed)
 console.log('Seed: ' + seed);
 
-ctx.globalAlpha = .1;
+ctx.globalAlpha = .15;
 // const maxAlpha = 1;
 const drawGrid = () => {
     const grid = [];
@@ -160,7 +165,7 @@ const drawGrid = () => {
 
     /* x1Offset += (noise.perlin2(gameTime + 91.1249875, gameTime + 0.157) * 2 - 1) * .5;
     y1Offset += (noise.perlin2(gameTime + 82.458908, gameTime + 24.1754) * 2 - 1) * .5;
-    
+
     x2Offset += (noise.perlin2(gameTime + 23.592, gameTime + 0.48923) * 2 - 1) * .5;
     y2Offset += (noise.perlin2(gameTime + 11.323299, gameTime + 9.249) * 2 - 1) * .5; */
 
@@ -281,7 +286,8 @@ const drawGrid = () => {
         // !---Old-Method---!
         ctx.beginPath();
         // set color to #e4846f
-        ctx.fillStyle = "#ee1400";
+        // ctx.fillStyle = "#fe382a"; red
+        ctx.fillStyle = "#44485d";
 
         // make alpha lower as it reaches edges and corners
 

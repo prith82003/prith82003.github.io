@@ -1,0 +1,23 @@
+.nav-bar {
+    
+    position: absolute;
+    z-index: 999999999;
+    
+    top: 530px;
+    left: 3vw;
+    width: 150px;
+    cursor: default;
+}
+
+.nav-bar p {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffcf0e;
+    font-weight: 200;
+    font-size: 30px;
+}
+
+.nav-bar p:hover {
+    font-weight: 500;
+    color: #ffcc00;
+    /* color: #9ec96a; */
+}

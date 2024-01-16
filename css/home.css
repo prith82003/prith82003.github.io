@@ -5,11 +5,14 @@
     color: rgba(255, 255, 255, 0);
     -webkit-text-stroke: 2.3px #5499f6;
 
-    margin-top: -1px;
-    margin-left: -55px;
-    cursor: default;
+    top: -100px;
+    left: 100px;
 
     z-index: 9999;
+}
+
+body {
+    background-color: transparent;
 }
 
 .name {
@@ -18,8 +21,8 @@
     font-weight: 500;   
     font-size: 100px;
     
-    margin-top: 210px;
-    margin-left: -15px;
+    top: 150px;
+    left: 130px;
     cursor: default;
 
     z-index: 9999;
@@ -31,8 +34,8 @@
     font-size: 30px;
     color: #9ec96a;
     
-    margin-top: 310px;
-    margin-left: -5px;
+    top: 345px;
+    left: 140px;
     width: 600px;
     cursor: default;
 
@@ -44,10 +47,11 @@
     font-weight: 200;
     font-size: 30px;
     color: #9ec96a;
+    text-align: right;
     
     bottom: 3%;
-    left: 71%;
-    width: 25%;
+    right: 3%;
+    width: 500px;
     cursor: default;
 
     z-index: 9999;
@@ -61,56 +65,10 @@
     position: absolute;
 }
 
-#content {
+#page {
     position: absolute;
     top: 0;
     left: -2.45%;
     padding-left: 2.3%;
 }
 
-.fadeIn { /* or position: absolute; */
-    /* your existing styles */
-    z-index: 9999;
-    animation: fadeIn 2.5s;
-    opacity: 1;
-}
-
-.fadeOut {
-    z-index: 9999;
-    animation: fadeOut 2.5s;
-    opacity: 0;
-}
-
-#canvas {
-    margin: auto;
-    
-    position: fixed;
-    top: 0;
-    left: 6.2%;
-    color: white;
-    
-    width: 91.3vw;
-    height: 100vh;
-
-    z-index: 50;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}

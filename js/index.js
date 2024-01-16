@@ -1,35 +1,12 @@
-const loadOpenWindows = () => {
-    const openPages = sessionStorage.getItem('openPages');
-    // create the div elements for each open window
-
-    if (openPages == null)
-        return;
-
-    const openPagesJson = JSON.parse(openPages);
-
-    for (const key in openPagesJson) {
-        // check if tab already exists
-        const tab = document.getElementById(key);
-        if (tab)
-            continue;
-
-        const pageName = key.slice(12);
-        createOpenWindow(pageName, openPagesJson[key], false);
-    }
-
-    const activePage = sessionStorage.getItem('activePage');
-    focusOnWindow(activePage, openPagesJson[`open-window-${activePage}`]);
-}
-
 const loadPage = (pageName, linkedPage, loadContent = false) => {
-    onLoad(pageName);
-
     if (pageName === 'active') {
         const activePage = sessionStorage.getItem('activePage');
         const linkedActive = sessionStorage.getItem('linkedActive');
 
         if (activePage == null) {
             loadPage('home', './pages/home.html', loadContent);
+            sessionStorage.setItem('activePage', 'home');
+            sessionStorage.setItem('linkedActive', './pages/home.html');
             return;
         }
 
@@ -37,105 +14,90 @@ const loadPage = (pageName, linkedPage, loadContent = false) => {
         return;
     }
 
-    sessionStorage.setItem('activePage', pageName);
-    sessionStorage.setItem('linkedActive', linkedPage);
+    console.log('Load: ' + pageName + ', LP: ' + linkedPage);
 
-    if (document.title === 'Portfolio')
-        loadOpenWindows();
-
-    const tab = document.getElementById(`open-window-${pageName}`);
-    if (tab && !tab.classList.contains('active-window'))
-        tab.classList.add('active-window');
-
-    if (!loadContent)
-        return;
-
-    changeContent(linkedPage);
-}
-
-const createOpenWindow = (pageName, linkedPage, switchTab = true) => {
-    const div = document.createElement('div');
-    const parent = document.getElementById('open-windows');
-
-    div.classList.add('open-window');
-    parent.appendChild(div);
-
-    div.id = `open-window-${pageName}`;
-
-    let name = pageName;
-    name = name[0].toUpperCase() + name.slice(1);
-    // name += ".html"
-
-    div.textContent = name;
-    div.addEventListener('click', () => { focusOnWindow(pageName, linkedPage) });
-
-    if (switchTab)
-        focusOnWindow(pageName, linkedPage);
-}
-
-const focusOnWindow = (pageName, linkedPage) => {
-    const tabs = document.getElementsByClassName('open-window');
-
-    const activePage = sessionStorage.getItem('activePage');
-
-    if (activePage === pageName)
-        return;
-
-    document.getElementById(`open-window-${activePage}`).classList.remove('active-window');
-
-    const openWindow = document.getElementById(`open-window-${pageName}`);
-    openWindow.classList.add('active-window');
-
-    changeContent(linkedPage);
-    onLoad(pageName);
-    sessionStorage.setItem('activePage', pageName);
-    sessionStorage.setItem('linkedActive', linkedPage);
+    if (loadContent)
+        PageManager.setActivePage(pageName, linkedPage);
 }
 
 const changeContent = (linkedPage) => {
+    console.log('Change Cont!')
     const content = document.getElementById('content');
 
     content.innerHTML = "";
     const object = document.createElement('object');
     object.type = "text/html";
+
+    // q: how do i access the content on the linked page through the data object
+    // a: object.contentDocument.body.innerHTML
     object.data = linkedPage;
+    object.id = 'contentObj';
     object.style.width = "100%";
     object.style.height = "100%";
     content.appendChild(object);
 }
 
-const openWindow = (pageName, linkedPage) => {
-    // send get request to /pages and store json object
-    const activePage = sessionStorage.getItem('activePage');
-
-    if (activePage === pageName)
-        return;
-
-    const openPages = sessionStorage.getItem('openPages');
-    loadOpenWindows();
-
-    let openPagesJson = null;
-    if (openPages == null) {
-        // create new openPages object
-        openPagesJson = {
-            [`open-window-${activePage}`]: linkedPage
-        }
-
-        // store openPages object in session storage
-        sessionStorage.setItem('openPages', JSON.stringify(openPagesJson));
-    } else
-        openPagesJson = JSON.parse(openPages);
-
-    // check if page is already open
-    if (openPagesJson[`open-window-${pageName}`] == null) {
-        createOpenWindow(pageName, linkedPage);
-        openPagesJson[`open-window-${pageName}`] = linkedPage;
-    }
-    else {
-        // focus on window
-        focusOnWindow(pageName, linkedPage);
-    }
-
-    sessionStorage.setItem('openPages', JSON.stringify(openPagesJson));
+const addListener = (func) => {
+    document.onmousemove = func;
 }
 
+if (document.title === 'Portfolio') {
+    PageManager.object = document.getElementById('contentObj');
+    PageManager.content = document.getElementById('content');
+}
+
+// make a singleton class called PageManager with a set and get activePage method
+class PageManager {
+    static object;
+    static content;
+
+    static getActivePage() {
+        return sessionStorage.getItem('activePage');
+    }
+
+    static getLinkedActive() {
+        return sessionStorage.getItem('linkedActive');
+    }
+
+    static setActivePage(pageName, linkedPage) {
+        const content = document.getElementById('content');
+
+        console.log('Document title: ' + document.title);
+
+        content.innerHTML = "";
+        const object = document.createElement('object');
+        object.type = "text/html";
+
+        console.log('LP: ' + linkedPage)
+
+        // q: how do i access the content on the linked page through the data object
+        // a: object.contentDocument.body.innerHTML
+        object.data = linkedPage;
+        object.id = 'contentObj';
+        object.style.width = "100%";
+        object.style.height = "100%";
+        content.appendChild(object);
+
+        const navButtons = object.contentDocument.getElementsByClassName('nav-buttons');
+
+        console.log('content Doc: ');
+        console.log(object.contentDocument);
+
+        console.log('Obj');
+        console.log(object);
+
+        for (const button of navButtons) {
+            button.onclick = () => {
+                console.log('Button Clicked!')
+                loadPage(button.name, button.linkedPage);
+            }
+        }
+
+        sessionStorage.setItem('activePage', pageName);
+        sessionStorage.setItem('linkedPage', linkedPage);
+    }
+
+    static setLinkedActive(linkedPage) {
+        sessionStorage.setItem('linkedActive', linkedPage);
+    }
+}

@@ -5,27 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- link stylesheet -->
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/fade.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script src="js/index.js"></script>
-    <script src="js/projects.js"></script>
+    <script src='js/perlin.js'></script>
+    
     <title>Portfolio</title>
 </head>
 <body onload="loadPage('active', 'active',  true)">
-    <!-- create a portion of the screen on the left hand side with class "nav-window" -->
-    <div class="nav-window">
-        <div id="explorer-header">Explorer</div>
-        <div class="nav-window-tab" onclick="openWindow('home', './pages/home.html')"> > <img src="./img/folder.png" width="20"> Home</div>
-        <div class="nav-window-tab" id="projects-tab"><div class="collapse-button" onclick="clickRootButton()">></div><div class="nav-window-tab project-tab" onclick="openWindow('projects', './pages/projects.html'); clickRootButton(true)"><img src="./img/folder.png" width="20"> Projects</div></div>
-        <div id="project-hierarchy"></div>
-        <div class="nav-window-tab" onclick="openWindow('About Me', './pages/about-me.html')"> > <img src="./img/folder.png" width="20"> About Me</div>
-    </div>
-
-    <div class="open-windows-tab" id="open-windows">
-        <div class="open-window" id="open-window-home" onclick="focusOnWindow('home', './pages/home.html')">Home</div>
+    <div class="nav-bar fadeIn">
+        <p class="nav-buttons" onclick="loadPage('Home', 'pages/home.html', true)">Home</p>
+        <p class="nav-buttons" onclick="loadPage('Home', 'pages/projects.html', true)">Projects</p>
+        <p class="nav-buttons" onclick="loadPage('Home', 'pages/about-me.html', true)">About Me</p>
     </div>
 
     <div class="text-body" id="content"></div>
+
+    <canvas id="canvas" name="canvas"></canvas>
+    <script src="js/canvas.js"></script>
 </body>
 </html>

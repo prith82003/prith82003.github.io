@@ -3,23 +3,27 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
         <link rel="stylesheet" href="../css/index.css">
+        <link rel="stylesheet" href="../css/nav.css">
+        <link rel="stylesheet" href="../css/projects.css">
+        <link rel="stylesheet" href="../css/fade.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
         <script src="../js/index.js"></script>
-        <script src="../js/projects.js"></script>
-        <script src='../js/perlin.js'></script>
     <title>Home</title>
 </head>
 <body onload="loadPage('home', './pages/home.html')">
     <link rel="stylesheet" href="../css/home.css">
-    <div class="text-body fadeIn" style="z-index: 1;" id="content">
+    <div class="text-body fadeIn fadeable" style="z-index: 1000;" id="page">
         <h1 class="hello">Welcome.</h1>
         <h2 class="name">I'm Prithviraaj,</h2><br>
         <p class="info">
@@ -27,14 +31,13 @@
         </p>
         
         <p class="extra-info">
-            I'm passionate about programming and I love learning about new things. I'm very interested in Artificial Intelligence, Game and Web Development 
+            I'm passionate about programming and I love learning about new things. I'm very interested in AI, Game and Web Development 
             and more.
         </p>
-        
     </div>
-    <canvas id="canvas" style="z-index: 0;" name="canvas"></canvas>
-    <script src="../js/home.js"></script>
-    
-    <script src="../js/canvas.js"></script>
+
+    <div class="projects">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores veniam possimus eaque distinctio dignissimos ratione numquam quis, rem odio repellendus quod voluptatem quam nostrum maiores doloribus molestiae ipsa eos velit.</p>
+    </div>
 </body>
 </html>
