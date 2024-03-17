@@ -1,7 +1,7 @@
 .hello {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    font-size: 8vw;
+    font-size: 16vh;
     color: rgba(255, 255, 255, 0);
     -webkit-text-stroke: 2.3px #5499f6;
 
@@ -19,10 +19,10 @@ body {
     font-family: 'Montserrat', sans-serif; 
     color: #357ad5;
     font-weight: 500;   
-    font-size: 4vw;
+    font-size: 8vh;
     
     top: 14vh;
-    left: 5vw;
+    left: 4.6vw;
     cursor: default;
 
     z-index: 9999;
@@ -31,7 +31,7 @@ body {
 .info {
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
-    font-size: 1.2vw;
+    font-size: 2.4vh;
     color: #9ec96a;
     
     top: 32vh;
@@ -45,7 +45,7 @@ body {
 .extra-info {
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
-    font-size: 1.2vw;
+    font-size: 2.4vh;
     color: #9ec96a;
     text-align: right;
     

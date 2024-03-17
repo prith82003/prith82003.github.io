@@ -21,12 +21,16 @@ const loadPage = (pageName, linkedPage, loadContent = false) => {
             console.log('Active: ' + active);
             const oldTab = document.getElementById(`nav-${active}`);
             oldTab.classList.remove('selected');
+
+            if (oldTab.innerText.startsWith('•'))
+                oldTab.innerText = oldTab.innerText.substring(2);
         }
 
         console.log('PageName: ' + pageName);
 
         const newTab = document.getElementById(`nav-${pageName}`);
         newTab.classList.add('selected');
+        newTab.innerText = '• ' + newTab.innerText;
     }
 
     if (loadContent)

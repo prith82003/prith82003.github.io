@@ -149,7 +149,10 @@ const good_seeds =
         52.335546401589596, 153.45241287522936, 53.69236029680923, 149.98975691933782, 156.83224236057225, 73.26809509753691, 92.70108053542445, 155.85054814808657,
         156.40055104482474, 169.2760158905349, 163.95847849355488, 62.787874068870025, 195.43189487265357, 148.72560264090296, 152.32696855199842, 194.6337409413344,
         185.6271497937412, 4.218232032380527, 113.83091265029914, 110.18122725611843, 15.432167091927234, 196.32948636862142, 106.97977392829117, 111.02547820977276,
-        139.17685628576243, 139.26583904874622, 87480444.48420529, 48447657.9594363, 34675187.87409691, 32362956.27117419];
+        139.17685628576243, 139.26583904874622, 87480444.48420529, 48447657.9594363, 34675187.87409691, 32362956.27117419, 16399607.897616055, 121700011.70971851,
+        56614346.05140292, 63731964.872115776, 85897780.47922423, 140658731.98418522, 97909077.42854221, 38725501.524942674, 35822718.13788023, 61446558.71929718,
+        76594323.0291905, 739026.0697808124, 125422529.30466682, 92864149.55410199, 71810057.85700741, 104170433.2652783, 86554121.04121995, 108705914.26348217,
+        28569411.81591424, 76130599.86028916];
 
 // generate random seed (not from good_seeds array)
 const seed = Math.random() * 158390578;
@@ -290,35 +293,8 @@ const drawGrid = () => {
         // ctx.fillStyle = "#fe382a"; red
         ctx.fillStyle = "#44485d";
 
-        // make alpha lower as it reaches edges and corners
-
-        /* var centerX = width / 2;
-        var centerY = height / 2;
-
-        // Calculate the distance from the center for the current particle
-        var distance = Math.sqrt(
-            Math.pow(pos.x - centerX, 2) + Math.pow(pos.y - centerY, 2)
-        );
-
-        // Calculate the alpha value based on the distance
-        var maxDistance = Math.sqrt(Math.pow(centerX, 2) + Math.pow(centerY, 2));
-        var alpha = 1 - Math.pow(distance / maxDistance, .12);
-        alpha *= 0.5 */;
-
-        // Set the global alpha value for the particle
-        // ctx.globalAlpha = alpha;
-
         ctx.arc(particle.pos.x, particle.pos.y, 1, 0, 2 * Math.PI);
         ctx.fill();
-
-
-
-        // !---New-Method---!
-        // particle.draw();
-
-
-        // const end = performance.now();
-        // console.log('Full: ' + (end - start) + 'ms');
     }
 }
 
