@@ -4,8 +4,8 @@ const loadPage = (pageName, linkedPage, loadContent = false) => {
         const linkedActive = sessionStorage.getItem('linkedActive');
 
         if (activePage == null) {
-            loadPage('home', './pages/home.html', loadContent);
-            sessionStorage.setItem('activePage', 'home');
+            loadPage('Home', './pages/home.html', loadContent);
+            sessionStorage.setItem('activePage', 'Home');
             sessionStorage.setItem('linkedActive', './pages/home.html');
             return;
         }
@@ -14,7 +14,20 @@ const loadPage = (pageName, linkedPage, loadContent = false) => {
         return;
     }
 
-    console.log('Load: ' + pageName + ', LP: ' + linkedPage);
+    if (document.title === 'Portfolio') {
+        const active = sessionStorage.getItem('activePage');
+
+        if (active != null) {
+            console.log('Active: ' + active);
+            const oldTab = document.getElementById(`nav-${active}`);
+            oldTab.classList.remove('selected');
+        }
+
+        console.log('PageName: ' + pageName);
+
+        const newTab = document.getElementById(`nav-${pageName}`);
+        newTab.classList.add('selected');
+    }
 
     if (loadContent)
         PageManager.setActivePage(pageName, linkedPage);
@@ -78,23 +91,9 @@ class PageManager {
         object.style.height = "100%";
         content.appendChild(object);
 
-        const navButtons = object.contentDocument.getElementsByClassName('nav-buttons');
-
-        console.log('content Doc: ');
-        console.log(object.contentDocument);
-
-        console.log('Obj');
-        console.log(object);
-
-        for (const button of navButtons) {
-            button.onclick = () => {
-                console.log('Button Clicked!')
-                loadPage(button.name, button.linkedPage);
-            }
-        }
-
         sessionStorage.setItem('activePage', pageName);
         sessionStorage.setItem('linkedPage', linkedPage);
+        sessionStorage.setItem('linkedActive', linkedPage);
     }
 
     static setLinkedActive(linkedPage) {

@@ -5,7 +5,7 @@
     color: rgba(255, 255, 255, 0);
     -webkit-text-stroke: 2.3px #5499f6;
 
-    top: -100px;
+    top: -5%;
     left: 100px;
 
     z-index: 9999;
@@ -21,7 +21,7 @@ body {
     font-weight: 500;   
     font-size: 100px;
     
-    top: 150px;
+    top: 13%;
     left: 130px;
     cursor: default;
 

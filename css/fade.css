@@ -1,13 +1,13 @@
 .fadeIn { /* or position: absolute; */
     /* your existing styles */
     /* z-index: 9999; */
-    animation: fadeIn 2.5s;
+    animation: fadeIn 2s;
     opacity: 1;
 }
 
 .fadeOut {
     z-index: 9999;
-    animation: fadeOut 2.5s;
+    animation: fadeOut 2s;
     opacity: 0;
 }
 

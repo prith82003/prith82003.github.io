@@ -2,23 +2,80 @@ body {
     background-color: transparent;
 }
 
-.projects {
-    opacity: 0;
-    color: #9ec96a;
-    position: absolute;
-    
-    top: 100px;
-    right: 3%;
-    
-    width: 400px;
-    text-align: right;
-}
-
-.projects p {
+.intro {
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
     font-size: 30px;
     color: #9ec96a;
+
+    position: absolute;
     
+    top: 35px;
+    left: 78px;
+    width: 600px;
     cursor: default;
+
+    z-index: 9999;
+}
+
+.projects-list {
+    position: absolute;
+
+    top: 35px;
+    right: 78px;
+    width: 800px;
+    cursor: default;
+
+    z-index: 9999;
+}
+
+.projects-list p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 30px;
+    color: #9ec96a;
+    /* text should start from right */
+    text-align: right;
+    margin-bottom: -20px;
+}
+
+#overview-text {
+    margin-bottom: 3px;
+}
+
+.projects-details {
+    text-overflow: ellipsis;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.5, 0, 0, 1), opacity 0.5s ease-out;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    max-height: 1000px; /* Adjust this value as needed */
+    transition: max-height 0.5s cubic-bezier(0, 0, 0.5, 1), opacity 0.5s ease-in;
+}
+
+@keyframes show {
+    0% {
+        height: 0%;
+    }
+    100% {
+        height: 100%;
+    }
+}
+
+@keyframes hide {
+    0% {
+        height: 100%;
+    }
+    100% {
+        height: 0%;
+    }
 }

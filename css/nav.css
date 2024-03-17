@@ -3,21 +3,32 @@
     position: absolute;
     z-index: 999999999;
     
-    top: 530px;
-    left: 3vw;
+    top: 550px;
+    left: 77px;
     width: 150px;
     cursor: default;
 }
 
-.nav-bar p {
+.nav-buttons {
     font-family: 'Montserrat', sans-serif;
     color: #ffcf0e;
     font-weight: 200;
     font-size: 30px;
 }
 
-.nav-bar p:hover {
+.nav-buttons:hover {
     font-weight: 500;
     color: #ffcc00;
-    /* color: #9ec96a; */
+}
+
+.nav-buttons.selected {
+    font-family: 'Montserrat', sans-serif;
+    color: #bf62e2;
+    font-weight: 200;
+    font-size: 30px;
+}
+
+.nav-buttons.selected:hover {
+    font-weight: 500;
+    color: #bf62e2;
 }
