@@ -5,8 +5,8 @@
     color: rgba(255, 255, 255, 0);
     -webkit-text-stroke: 2.3px #5499f6;
 
-    top: -6.5%;
-    left: 3.2%;
+    top: -8.5vh;
+    left: 3.5vw;
 
     z-index: 9999;
 }
@@ -21,8 +21,8 @@ body {
     font-weight: 500;   
     font-size: 4vw;
     
-    top: 13%;
-    left: 5%;
+    top: 13vh;
+    left: 5vw;
     cursor: default;
 
     z-index: 9999;
@@ -34,9 +34,9 @@ body {
     font-size: 1.2vw;
     color: #9ec96a;
     
-    top: 27%;
-    left: 5.25%;
-    width: 600px;
+    top: 30vh;
+    left: 5vw;
+    width: 24vw;
     cursor: default;
 
     z-index: 9999;
