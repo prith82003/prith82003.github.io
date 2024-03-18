@@ -14,6 +14,7 @@
     color: #ffcf0e;
     font-weight: 200;
     font-size: 2.6vh;
+    cursor: pointer;
 }
 
 .nav-buttons:hover {

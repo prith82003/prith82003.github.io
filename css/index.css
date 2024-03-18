@@ -19,6 +19,17 @@
     overflow: hidden;
 }
 
+a {
+    /* remove underline */
+    text-decoration: none;
+    color: #357ad5;
+}
+
+/* on click a element change color to blue */
+a:active {
+    color: #2463b6;
+}
+
 body {
     background: var(--dark-background-color);
     margin: 0;
