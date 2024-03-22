@@ -170,7 +170,7 @@ const drawGrid = () => {
 
     gameTime += 0.01
     if (gameTime >= 55)
-        ctx.globalAlpha = 0;
+        clearInterval(id);
 
     for (let i = 0; i < columns; i++) {
         grid[i] = [];
@@ -291,4 +291,4 @@ const drawGrid = () => {
     }
 }
 
-setInterval(drawGrid, 1000 / physicsHertz);
+const id = setInterval(drawGrid, 1000 / physicsHertz);
