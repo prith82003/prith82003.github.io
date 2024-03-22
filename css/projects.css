@@ -32,6 +32,7 @@ body {
     top: 1vh;
     right: 2.15vw;
     width: 28vw;
+    height: 100vh;
     cursor: default;
 
     z-index: 9999;
@@ -44,11 +45,11 @@ body {
     color: #9ec96a;
     /* text should start from right */
     text-align: right;
-    margin-bottom: -20px;
+    margin-bottom: -1.6vh;
 }
 
 #overview-text {
-    margin-bottom: 3px;
+    margin-bottom: 3.3vh;
 }
 
 .projects-details {
