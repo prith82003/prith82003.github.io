@@ -1,3 +1,63 @@
 body {
     background-color: transparent;
 }
+
+p {
+    font-family: 'Montserrat', sans-serif;
+    color: #9ec96a;
+    font-weight: 200;
+    font-size: 2.2vh;
+}
+
+.about-journey {
+    position: absolute;
+    top: 1vh;
+    left: 2.15vw;
+    width: 25vw;
+    cursor: default;
+    z-index: 9999;
+}
+
+.about-passion {
+    position: absolute;
+    top: 1vh;
+    right: 2.15vw;
+    width: 25vw;
+    cursor: default;
+    z-index: 9999;
+    text-align: right;
+}
+
+.about-skills {
+    position: absolute;
+    top: 36.3vh;
+    right: 2.15vw;
+    width: 25vw;
+    cursor: default;
+    z-index: 9999;
+    text-align: right;
+}
+
+.about--me {
+    position: absolute;
+    top: 75vh;
+    right: 2.15vw;
+    width: 55vw;
+    cursor: default;
+    z-index: 9999;
+    text-align: right;
+}
+
+.socials-tab {
+    position: absolute;
+    top: 42vh;
+    left: 2.15vw;
+    width: 55vw;
+    cursor: default;
+    z-index: 9999;
+}
+
+img {
+    width: 50px;
+    margin-right: .8vw;
+}
